@@ -1,4 +1,1 @@
-.nav-bar-container {
-  background-color: #999;
-  overflow: hidden;
-}
+@import 'components/top-nav-bar.css';
