@@ -1,1 +1,12 @@
+<div class='user-signup'>
+  <form {{action 'signup' model on='submit'}} class='input-form'>
+    <div>
+      <label>Email</label>
+      {{input type="text" value=model.email}}
+      <label>Password</label>
+      {{input type="password" value=model.password}}
+    </div>
+    <button type="submit">Signup</button>
+  </form>
+</div>
 {{outlet}}
