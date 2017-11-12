@@ -8,7 +8,10 @@ export default Route.extend({
   },
   actions: {
     login(model) {
-      this.get('session').authenticate('authenticator:jwt', model);
+      var _this = this;
+      this.get('session').authenticate('authenticator:jwt', model).then(function() {
+        _this.transitionTo('index');
+      });
     }
   }
 });

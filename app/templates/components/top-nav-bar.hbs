@@ -1,6 +1,11 @@
 <div class="top-nav-bar">
   {{#link-to 'index' class='link'}}October{{/link-to}}
-  {{#link-to 'user-login' class='link'}}Login{{/link-to}}
+  {{#if session.isAuthenticated}}
+    {{#link-to 'index' class='link'}}<span {{action "logout"}}>Log Out</span>{{/link-to}}
+  {{else}}
+    {{#link-to 'user-login' class='link'}}Login{{/link-to}}
+  {{/if}}
   {{#link-to 'user-signup' class='link'}}Sign Up{{/link-to}}
+
 </div>
 {{yield}}

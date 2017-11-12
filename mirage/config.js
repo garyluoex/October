@@ -6,9 +6,27 @@ export default function() {
   this.namespace = 'api';
 
   this.post('/tokens', (schema, request) => {
-    return {
-        token: JWT.sign({email: request}, 'secretkey')
-    };
+    var credential = JSON.parse(request.requestBody);
+
+    var user = schema.users.find(credential.email);
+
+    if (user && user.password == credential.password) {
+      return {
+          token: JWT.sign({email: request}, 'secretkey')
+      };
+    } else {
+      return {};
+    }
+  });
+
+  this.post('/create-user', (schema, request) => {
+    console.log(request);
+
+    var credential = JSON.parse(request.requestBody);
+
+    schema.users.create({ id: credential.email, email: credential.email, password: credential.password });
+
+    return schema.users.find(credential.email);
   });
 
   // These comments are here to help you get started. Feel free to delete them.

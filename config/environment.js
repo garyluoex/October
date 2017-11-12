@@ -23,6 +23,9 @@ module.exports = function(environment) {
       // when it is created
     }
   };
+  ENV['ember-simple-auth'] = {
+    authorizer: 'authorizer:token'
+  };
 
   ENV['ember-simple-auth-token'] = {
     identificationField: 'email',
