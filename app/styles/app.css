@@ -1,3 +1,8 @@
 @import 'components/top-nav-bar.css';
 @import 'user-login.css';
-@import 'user-signup.css'
+@import 'user-signup.css';
+@import 'user-homepage.css';
+
+body {
+  margin: 0px;
+}
