@@ -1,8 +1,8 @@
 <div class="top-nav-bar">
   {{#if session.isAuthenticated}}
     {{#link-to 'index' class='link'}}October{{/link-to}}
-    <button {{action "logout" clsss="link"}} >Log Out</button>
-    {{#link-to 'user-homepage' class='link'}}October{{/link-to}}
+    <button {{action "logout" clsss="link"}} >Logout</button>
+    {{#link-to 'user-homepage' class='link'}}{{session.data.authenticated.user}}{{/link-to}}
   {{else}}
     {{#link-to 'index' class='link'}}October{{/link-to}}
     {{#link-to 'user-signup' class='link'}}Sign Up{{/link-to}}

@@ -10,7 +10,8 @@ export default Route.extend({
     login(model) {
       var _this = this;
       this.get('session').authenticate('authenticator:jwt', model).then(function() {
-        _this.transitionTo('index');
+        _this.get('session').set('data.authenticated.user', model.identification);
+        _this.transitionTo('user-homepage');
       });
     }
   }

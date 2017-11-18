@@ -4,8 +4,8 @@
 }
 
 .top-nav-bar button {
-  border: none;
-  background-color: inherit;
+    border: none;
+    background-color: inherit;
    color:inherit;
    float: right;
    display: block;
@@ -15,6 +15,7 @@
    text-decoration: none;
    font: inherit;
    font-size: 17px;
+   border-radius: 0px;
 }
 
 .top-nav-bar .link {
