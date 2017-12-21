@@ -1,0 +1,10 @@
+.image-drop-zone {
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  height: 100px;
+  width: 100px;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 0px;
+}
