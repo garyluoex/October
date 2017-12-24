@@ -8,7 +8,7 @@ export default function() {
   this.post('/tokens', (schema, request) => {
     var credential = JSON.parse(request.requestBody);
 
-    var user = schema.users.find(credential.email);
+    var user = schema.users.findBy({ email: credential.email});
 
     if (user && user.password == credential.password) {
       return {
@@ -26,7 +26,33 @@ export default function() {
 
     schema.users.create({ id: credential.email, email: credential.email, password: credential.password });
 
-    return schema.users.find(credential.email);
+    return schema.users.findBy({ email: credential.email });
+  });
+
+  // this.post('/users/:id/photos', (schema, request) => {
+  //   var id = request.params.id;
+  //   var user = schema.users.find(id);
+  //   var photo = JSON.parse(request.requestBody);
+  //
+  //   user.createPhoto(photo.url);
+  //   user.save();
+  // });
+  //
+  this.get('/users/:id', (schema, request) => {
+    var id = request.params.id;
+    var result = {
+      data: {
+        type: 'users',
+        id: id,
+        attributes: schema.users.findBy({ email: id })
+      }
+    };
+    return result;
+  });
+
+  this.patch('/users/:id', (schema, request) => {
+    console.log(request);
+    return {};
   });
 
   // These comments are here to help you get started. Feel free to delete them.
