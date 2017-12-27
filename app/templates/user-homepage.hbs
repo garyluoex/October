@@ -1,2 +1,5 @@
 {{image-drop-zone uploadAction="uploadImage"}}
+{{#each model.photos as |photo|}}
+ <img src={{photo.url}} height="300" width="300"/>
+{{/each}}
 {{outlet}}

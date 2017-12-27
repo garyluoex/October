@@ -3,16 +3,23 @@ import Route from '@ember/routing/route';
 export default Route.extend({
   session: Ember.inject.service('session'),
 
+  model() {
+    return this.get('store').queryRecord('user', {email: this.get('session').get('data').authenticated.user});
+  },
+
   actions: {
     uploadImage(imageUrl) {
       var store = this.get('store');
-      var email = this.get('session').get('data').authenticated.user;
-      store.findRecord('user', email).then(function(user) {
-        var photo = store.createRecord('photo', { id: imageUrl, url: imageUrl });
-        photo.save();
-        user.get('photos').addObject(photo);
-        user.save();
-        console.log({"user": user.get('email'), "url": user.get('photos')});
+      var username = this.get('session').get('data').authenticated.user;
+
+      store.queryRecord('user', { email: username }).then(function(user) {
+        var photo = store.createRecord('photo', { url: imageUrl });
+        photo.save().then(function() {
+          user.get('photos').addObject(photo);
+          user.save();
+
+          console.log({"user": user.get('email'), "url": user.get('photos')});
+        });
       });
     }
   }

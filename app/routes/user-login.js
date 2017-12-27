@@ -9,10 +9,14 @@ export default Route.extend({
   actions: {
     login(model) {
       var _this = this;
-      this.get('session').authenticate('authenticator:jwt', model).then(function() {
-        _this.get('session').set('data.authenticated.user', model.identification);
-        _this.transitionTo('user-homepage');
-      });
+      if (model.identification) {
+        this.get('session').authenticate('authenticator:jwt', model).then(function() {
+          _this.get('session').set('data.authenticated.user', model.identification);
+          _this.transitionTo('user-homepage');
+        });
+      } else {
+        console.log("Invalid email address.");
+      }
     }
   }
 });

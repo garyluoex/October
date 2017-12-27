@@ -19,14 +19,23 @@ export default function() {
     }
   });
 
-  this.post('/create-user', (schema, request) => {
-    console.log(request);
+  this.post('/users', (schema, request) => {
+    console.log(request.requestBody);
 
-    var credential = JSON.parse(request.requestBody);
+    var user = JSON.parse(request.requestBody);
 
-    schema.users.create({ id: credential.email, email: credential.email, password: credential.password });
+    schema.users.create({ email: user.data.attributes.email, password: user.data.attributes.password });
 
-    return schema.users.findBy({ email: credential.email });
+    var loaded = schema.users.findBy({ email: user.data.attributes.email });
+
+    var result = {
+      data: {
+        type: 'users',
+        id: loaded.id,
+        attributes: loaded
+      }
+    };
+    return result;
   });
 
   // this.post('/users/:id/photos', (schema, request) => {
@@ -40,11 +49,12 @@ export default function() {
   //
   this.get('/users/:id', (schema, request) => {
     var id = request.params.id;
+    var loaded = schema.users.findBy({ email: id });
     var result = {
       data: {
         type: 'users',
-        id: id,
-        attributes: schema.users.findBy({ email: id })
+        id: loaded.id,
+        attributes: loaded
       }
     };
     return result;
@@ -52,7 +62,41 @@ export default function() {
 
   this.patch('/users/:id', (schema, request) => {
     console.log(request);
-    return {};
+    var user = JSON.parse(request.requestBody);
+    var loaded = schema.users.find(user.data.id);
+    Object.keys(user.data.attributes).forEach(function(attribute) {
+      loaded.update(attribute, user.data.attributes[attribute]);
+    });
+
+    var photoIds = [];
+    for (var i in user.data.relationships.photos.data) {
+      if (user.data.relationships.photos.data.hasOwnProperty(i)) {
+        photoIds.push(user.data.relationships.photos.data[i].id);
+      }
+    }
+
+    loaded.photoIds = photoIds;
+
+    loaded.save();
+    return schema.users.find(user.data.id);
+  });
+
+  this.post('/photos', (schema, request) => {
+    var photo = JSON.parse(request.requestBody);
+
+    schema.photos.create({ url: photo.data.attributes.url });
+
+    var loaded = schema.photos.findBy({ url: photo.data.attributes.url })
+
+    var result = {
+      data: {
+        type: 'photos',
+        id: loaded.id,
+        attributes: loaded
+      }
+    };
+
+    return result;
   });
 
   // These comments are here to help you get started. Feel free to delete them.
