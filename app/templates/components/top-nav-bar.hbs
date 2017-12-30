@@ -1,12 +1,12 @@
 <div class="top-nav-bar">
   {{#if session.isAuthenticated}}
     {{#link-to 'index' class='link'}}October{{/link-to}}
-    <button {{action "logout" clsss="link"}} >Logout</button>
-    {{#link-to 'user-homepage' class='link'}}{{session.data.authenticated.user}}{{/link-to}}
+    <button {{action "logout" clsss="right-link"}} >Logout</button>
+    {{#link-to 'user-homepage' class='right-link'}}{{session.data.authenticated.user}}{{/link-to}}
   {{else}}
-    {{#link-to 'index' class='link'}}October{{/link-to}}
-    {{#link-to 'user-signup' class='link'}}Sign Up{{/link-to}}
-    {{#link-to 'user-login' class='link'}}Login{{/link-to}}
+    {{#link-to 'index' class='left-link'}}October{{/link-to}}
+    {{#link-to 'user-signup' class='right-link'}}Sign Up{{/link-to}}
+    {{#link-to 'user-login' class='right-link'}}Login{{/link-to}}
   {{/if}}
 </div>
 {{yield}}
