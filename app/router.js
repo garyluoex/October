@@ -10,6 +10,8 @@ Router.map(function() {
   this.route('user-login');
   this.route('user-signup');
   this.route('user-homepage');
+  this.route('index');
+  this.route('homepage', {path:'/'});
 });
 
 export default Router;

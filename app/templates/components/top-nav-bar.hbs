@@ -1,6 +1,6 @@
 <div class="top-nav-bar">
-  {{#link-to 'index' class='left-link circle'}}{{/link-to}}
-  {{#link-to 'index' class='left-link'}}WeCenter{{/link-to}}
+  {{#link-to 'homepage' class='circle'}}{{/link-to}}
+  {{#link-to 'homepage' class='left-link'}}WeCenter{{/link-to}}
   {{#if session.isAuthenticated}}
     <button {{action "logout" clsss="right-link"}} >Logout</button>
     {{#link-to 'user-homepage' class='right-link'}}{{session.data.authenticated.user}}{{/link-to}}

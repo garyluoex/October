@@ -5,7 +5,7 @@ export default Component.extend({
     logout() {
       console.log(this.get('session').get('data').authenticated);
       this.get('session').invalidate();
-      this.get('router').transitionTo('index');
+      this.get('router').transitionTo('homepage');
     }
   }
 });

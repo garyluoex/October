@@ -1,66 +1,51 @@
-.top-nav-bar {
-  color: #ff;
-  background-color: rgba(255, 0, 0, 0);
-  overflow: hidden;
-  padding: 15px 100px 15px 100px;
-  position: relative;
-  width: 100%;
-  height: 30px;
-  z-index: 100;
-}
+top-nav-bar-height = 60px
+top-nav-bar-width = 90%
 
-.top-nav-bar button {
-  border: none;
-  background-color: inherit;
-   color: inherit;
-   float: right;
-   display: block;
-   color: #f2f2f0;
-   text-align: center;
-   padding: 14px 16px;
-   text-decoration: none;
-   font: inherit;
-   font-size: 17px;
-   border-radius: 0px;
-}
+top-nav-bar-link-width = 70px
+top-nav-bar-link-spacing = 10px
 
-.top-nav-bar .left-link {
+top-nav-bar-icon-length = 60px
+top-nav-bar-icon-margin = (top-nav-bar-link-width - top-nav-bar-icon-length)/2
+
+.top-nav-bar
+  position: relative
+  height: top-nav-bar-height
+  width: top-nav-bar-width
+  background-color: rgba(255, 255, 0, 0)
+  padding: 0 5% 0 5%
+  margin: none
+  border: none
+  z-index: 100
+
+.top-nav-bar .left-link
   float: left;
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
+  height: top-nav-bar-height
+  width: top-nav-bar-link-width
+  padding: 0 top-nav-bar-link-spacing 0 top-nav-bar-link-spacing
+
+  text-align: center
+  vertical-align: middle
+  line-height: top-nav-bar-height
   text-decoration: none;
   font-size: 17px;
-}
 
-.top-nav-bar .right-link {
+.top-nav-bar .right-link
   float: right;
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
+  height: top-nav-bar-height
+  width: top-nav-bar-link-width
+  padding: 0 top-nav-bar-link-spacing 0 top-nav-bar-link-spacing
+
+  text-align: center
+  vertical-align: middle
+  line-height: top-nav-bar-height
   text-decoration: none;
   font-size: 17px;
-}
 
-.circle {
+.top-nav-bar .circle
+  float: left
+  height: top-nav-bar-height - 10px
+  width: top-nav-bar-height - 10px
+  margin: top-nav-bar-icon-margin
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
+
   background-color: red;
-}
-
-.top-nav-bar button:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.top-nav-bar .link:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-/* Add a color to the active/current link */
-.top-nav-bar .link.active {
-    background-color: #4CAF50;
-    color: white;
-}
